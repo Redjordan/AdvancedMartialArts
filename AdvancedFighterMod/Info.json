@@ -1,0 +1,10 @@
+﻿{
+  "Id": "AdvancedMartialArts",
+  "DisplayName": "AdvancedMartialArts",
+  "Author": "Redjordan",
+  "Version": "0.1.0",
+  "ManagerVersion": "0.12.2",
+  "Requirements": [],
+  "AssemblyName": "AdvancedMartialArts.dll",
+  "EntryMethod": "AdvancedMartialArts.Main.Load"
+}

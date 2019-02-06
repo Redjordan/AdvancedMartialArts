@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{160AF111-CDA4-47CD-83A2-D2928A0D3253}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdvancedMartialArts</RootNamespace>
+    <AssemblyName>AdvancedMartialArts</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony12">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\0Harmony12.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Slayer\Logic\SetStudiedTargetFact.cs" />
+    <Compile Include="Classes\Slayer\Logic\SetStudiedTargetOnSneakAttack.cs" />
+    <Compile Include="Classes\Slayer\Logic\StudiedTargetContextActionApplyBuff.cs" />
+    <Compile Include="Classes\Slayer\Logic\UnitPartStudiedTarget.cs" />
+    <Compile Include="Classes\Slayer\Slayer.cs" />
+    <Compile Include="Feats\CombatFeats\AdvancedArmorTraining.cs" />
+    <Compile Include="Feats\CombatFeats\AdvancedWeaponTraining.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ActivatableAbilityGroupSizeRestriction.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\FightersFinesseLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\FightersTacticsLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\FightersReflexesLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\SetSkillRankToBABLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ArmedBraveryLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ArmoredConfidenceLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ArmoredJuggernautLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ArmorSpecializationLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\CombatManeuverDefenseLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\ContextActionWeaponEnchantPoolWarriorSpirit.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\DazzlingIntimidationLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\DefensiveWeaponTrainingLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\EffortlessDualWieldingLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\FocusedWeaponLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\HeavyArmorSpeedPenaltyRemoval.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\IncreaseActivatableAbilityGroupSizeBaseOnFeatureRanks.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\SteelHeadbuttLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\TrainedGraceLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\UndoSelectionLogic.cs" />
+    <Compile Include="Feats\CombatFeats\FeatLogic\WarriorSpiritPoolLogic.cs" />
+    <Compile Include="Feats\GeneralFeats\AnimalAllyFeatLine.cs" />
+    <Compile Include="Feats\GeneralFeats\GeneralFeats.cs" />
+    <Compile Include="Feats\GeneralFeats\Logic\AnimalAllyAdjustToLevelLogic.cs" />
+    <Compile Include="Feats\GeneralFeats\Logic\NatureSoulLogic.cs" />
+    <Compile Include="HelperClasses\BlueprintParametrizedFeatureWeaponTraining.cs" />
+    <Compile Include="HelperClasses\ComponentAppliedOnceOnLevelUp.cs" />
+    <Compile Include="HelperClasses\FakeLocalizedString.cs" />
+    <Compile Include="HelperClasses\PrerequisiteMeetsPrerequisiteForAny.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="HelperClasses\AddFactOnLevelRange.cs" />
+    <Compile Include="HelperClasses\AddFactOnLevelUpCondtion.cs" />
+    <Compile Include="HelperClasses\ArmorTypeLogic.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\SaveCompatibility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Info.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    xcopy /y "$(SolutionDir)\AdvancedFighterMod\bin\$(Configuration)\AdvancedMartialArts.dll" "G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\AdvancedMartialArts\"
+    xcopy /y "$(SolutionDir)\AdvancedFighterMod\Info.json" "G:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\AdvancedMartialArts\"
+ 
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
