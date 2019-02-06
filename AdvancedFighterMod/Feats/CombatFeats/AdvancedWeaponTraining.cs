@@ -60,7 +60,9 @@ namespace AdvancedMartialArts.Feats.CombatFeats
         {
             var fighter = Helpers.fighterClass;
 
-            BlueprintFeature twoWeaponFeature = library.Get<BlueprintFeature>("88da2a5dfc505054f933bb81014e864f");
+            BlueprintFeature twoHandedWeaponFeature = library.Get<BlueprintFeature>("88da2a5dfc505054f933bb81014e864f");
+            twoHandedWeaponFeature.AddComponent(twoHandedWeaponFeature.PrerequisiteFeature());
+
 
             BlueprintFeatureSelection advancedWeaponTraining = Helpers.CreateFeatureSelection("AdvancedWeaponTraining",
                 "Advanced Weapon Training",
@@ -69,7 +71,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 WeaponTraining.Icon,
                 FeatureGroup.CombatFeat,
                 Helpers.PrerequisiteFeature(WeaponTraining, true),
-                Helpers.PrerequisiteFeature(twoWeaponFeature, true),
+                Helpers.PrerequisiteFeature(twoHandedWeaponFeature, true),
                 Helpers.PrerequisiteClassLevel(fighter, 5)
             );
 
