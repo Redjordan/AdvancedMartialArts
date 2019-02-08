@@ -130,6 +130,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Info.json" />
+    <None Include="Repository.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

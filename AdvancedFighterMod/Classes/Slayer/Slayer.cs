@@ -34,9 +34,9 @@ namespace AdvancedMartialArts.Classes.Slayer
             library.AddAsset(slayer, Helpers.getGuid("SlayerClass"));
 
             slayer.LocalizedName = Helpers.CreateString("Slayer.Name", "Slayer");
-            slayer.LocalizedDescription = Helpers.CreateString("Oracle.Description", "Skilled at tracking down targets, slayers are consummate hunters, living for the chase and the deadly stroke that brings it to a close. Slayers spend most of their time honing their weapon skills, studying the habits and anatomy of foes, and practicing combat maneuvers.");
+            slayer.LocalizedDescription = Helpers.CreateString("Slayer.Description", "Skilled at tracking down targets, slayers are consummate hunters, living for the chase and the deadly stroke that brings it to a close. Slayers spend most of their time honing their weapon skills, studying the habits and anatomy of foes, and practicing combat maneuvers.");
             slayer.m_Icon = ranger.Icon;
-            slayer.SkillPoints = 6;
+            slayer.SkillPoints = 4;
             slayer.HitDie = DiceType.D10;
             slayer.BaseAttackBonus = ranger.BaseAttackBonus;
             slayer.FortitudeSave = ranger.FortitudeSave;

@@ -6,5 +6,7 @@
   "ManagerVersion": "0.12.2",
   "Requirements": [],
   "AssemblyName": "AdvancedMartialArts.dll",
-  "EntryMethod": "AdvancedMartialArts.Main.Load"
+  "EntryMethod": "AdvancedMartialArts.Main.Load",
+  "HomePage": "https://www.nexusmods.com/pathfinderkingmaker/mods/82?tab=description",
+  "Repository": "https://raw.githubusercontent.com/Redjordan/AdvancedMartialArts/master/AdvancedFighterMod/Repository.json"
 }

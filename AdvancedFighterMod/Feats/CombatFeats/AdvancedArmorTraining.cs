@@ -78,6 +78,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
 
             BlueprintArchetype TwoHandedFighterArchetype = library.Get<BlueprintArchetype>("84643e02a764bff4a9c1aba333a53c89");
             RemoveAdvancedArmorTrainingFromArchetypes(TwoHandedFighterArchetype, armorTrainingWithAdvandedArmorTraining, armorTraining);
+
             BlueprintArchetype SwordlordArchetype = library.Get<BlueprintArchetype>("d80a67a264f206e4b8d2fcf7e560d48f");
             RemoveAdvancedArmorTrainingFromArchetypes(SwordlordArchetype, armorTrainingWithAdvandedArmorTraining, armorTraining);
         }
@@ -86,10 +87,10 @@ namespace AdvancedMartialArts.Feats.CombatFeats
         {
             foreach(var levelEntry in archetype.RemoveFeatures)
             {
-                if(levelEntry.Level == 7 || levelEntry.Level == 11 || levelEntry.Level == 15)
+                if(levelEntry.Level == 3 || levelEntry.Level == 7 || levelEntry.Level == 11 || levelEntry.Level == 15)
                 {
-                    levelEntry.Features.Add(armorTrainingWithAdvandedArmorTraining);
                     levelEntry.Features.Remove(armorTraining);
+                    levelEntry.Features.Add(armorTrainingWithAdvandedArmorTraining);
                 }
             }
         }

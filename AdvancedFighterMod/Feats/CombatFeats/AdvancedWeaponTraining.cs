@@ -88,7 +88,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
 
             library.AddCombatFeats(advancedWeaponTraining);
 
-            BlueprintFeatureSelection advancedWeaponTrainingForSelection = Helpers.CreateFeatureSelection("AdvancedWeaponTraining",
+            BlueprintFeatureSelection advancedWeaponTrainingForSelection = Helpers.CreateFeatureSelection("AdvancedWeaponTrainingLVL9",
                 "Advanced Weapon Training",
                 "Beginning at 9th level, instead of selecting an additional fighter weapon group, a fighter can choose an advanced weapon training option for one fighter weapon group that he previously selected with the weapon training class feature.",
                 "914b143cd76b40dc91feb87d7c404b23",
@@ -97,10 +97,35 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 Helpers.PrerequisiteFeature(WeaponTraining),
                 Helpers.PrerequisiteClassLevel(fighter, 9)
             );
+
+            BlueprintFeatureSelection advancedWeaponTrainingForSelectionLVL13 = Helpers.CreateFeatureSelection("AdvancedWeaponTrainingLVL13",
+                "Advanced Weapon Training",
+                "Beginning at 9th level, instead of selecting an additional fighter weapon group, a fighter can choose an advanced weapon training option for one fighter weapon group that he previously selected with the weapon training class feature.",
+                Helpers.getGuid("AdvancedWeaponTrainingLVL13"),
+                WeaponTraining.Icon,
+                FeatureGroup.CombatFeat,
+                Helpers.PrerequisiteFeature(WeaponTraining),
+                Helpers.PrerequisiteClassLevel(fighter, 13)
+            );
+
+            BlueprintFeatureSelection advancedWeaponTrainingForSelectionLVL17 = Helpers.CreateFeatureSelection("AdvancedWeaponTrainingLVL17",
+                "Advanced Weapon Training",
+                "Beginning at 9th level, instead of selecting an additional fighter weapon group, a fighter can choose an advanced weapon training option for one fighter weapon group that he previously selected with the weapon training class feature.",
+                Helpers.getGuid("AdvancedWeaponTrainingLVL17"),
+                WeaponTraining.Icon,
+                FeatureGroup.CombatFeat,
+                Helpers.PrerequisiteFeature(WeaponTraining),
+                Helpers.PrerequisiteClassLevel(fighter, 17)
+            );
             advancedWeaponTrainingForSelection.SetFeatures(features);
             advancedWeaponTrainingForSelection.AddComponent(prerequisite);
+            advancedWeaponTrainingForSelectionLVL13.SetFeatures(features);
+            advancedWeaponTrainingForSelectionLVL13.AddComponent(prerequisite);
+            advancedWeaponTrainingForSelectionLVL17.SetFeatures(features);
+            advancedWeaponTrainingForSelectionLVL17.AddComponent(prerequisite);
 
-            WeaponTraining.SetFeatures(WeaponTraining.AllFeatures.AddToArray(advancedWeaponTrainingForSelection));
+
+            WeaponTraining.SetFeatures(WeaponTraining.AllFeatures.AddToArray(advancedWeaponTrainingForSelection, advancedWeaponTrainingForSelectionLVL13, advancedWeaponTrainingForSelectionLVL17));
         }
 
         private static List<BlueprintFeature> getAdvancedWeaponTraining(BlueprintCharacterClass fighter)
