@@ -1,8 +1,8 @@
 ﻿{
   "Id": "AdvancedMartialArts",
-  "DisplayName": "AdvancedMartialArts",
+  "DisplayName": "Advanced Martial Arts",
   "Author": "Redjordan",
-  "Version": "0.1.0",
+  "Version": "0.1.1",
   "ManagerVersion": "0.12.2",
   "Requirements": [],
   "AssemblyName": "AdvancedMartialArts.dll",
