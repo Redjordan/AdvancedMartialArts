@@ -55,7 +55,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public override void DeactivateModifier()
         {
-            Main.logger.Log("ArmorTypeLogic DeactivateModifier!");
             if (m_Modifier != null)
             {
                 m_Modifier.Remove();

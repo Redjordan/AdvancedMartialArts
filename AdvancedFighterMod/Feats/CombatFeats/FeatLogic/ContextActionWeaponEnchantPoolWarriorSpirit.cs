@@ -45,7 +45,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
                         return;
                     int num1 = 0;
                     int groupSize = maybeCaster.Descriptor.Progression.Features.GetRank(Feature);
-                    Main.logger.Log("groupSize" + groupSize);
                     description.EnchantedItem = itemEntity;
                     description.EnchantPool = this.EnchantPool;
                     if (itemEntity.Enchantments.Any<ItemEnchantment>())

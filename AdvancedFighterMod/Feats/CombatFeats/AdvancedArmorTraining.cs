@@ -149,28 +149,30 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                armorTraining.Icon,
                FeatureGroup.CombatFeat,
                Helpers.PrerequisiteFeature(armorTraining),
-               Helpers.PrerequisiteClassLevel(fighter, 3), Helpers.Create<ArmoredJuggernautLogic>());
+               Helpers.PrerequisiteClassLevel(fighter, 3));
 
-            List<BlueprintFeature> featureList = new List<BlueprintFeature>();
+            Dictionary<string, BlueprintFeature> armorSpecializationFeatureList = new Dictionary<string, BlueprintFeature>();
 
             foreach(BlueprintArmorType armorType in Resources.FindObjectsOfTypeAll<BlueprintArmorType>())
             {
-                if(armorType.ProficiencyGroup == ArmorProficiencyGroup.Heavy || armorType.ProficiencyGroup == ArmorProficiencyGroup.Medium || armorType.ProficiencyGroup == ArmorProficiencyGroup.Light)
+                string guidString = Helpers.getGuid("ArmorSpecialization" + armorType.DefaultName);
+                if((armorType.ProficiencyGroup == ArmorProficiencyGroup.Heavy || 
+                   armorType.ProficiencyGroup == ArmorProficiencyGroup.Medium || 
+                   armorType.ProficiencyGroup == ArmorProficiencyGroup.Light) &&
+                   !armorSpecializationFeatureList.ContainsKey(guidString))
                 {
-                    string guidString = Helpers.getGuid("ArmorSpecialization" + armorType.DefaultName);
-
                     BlueprintFeature armorSpecializationForType = Helpers.CreateFeature("ArmorSpecialization" + armorType.DefaultName, "Armor Specialization (" + armorType.DefaultName + ")",
-                   "Armor Specialisation in " + armorType.DefaultName,
+                   "Armor Specialization in " + armorType.DefaultName,
                     guidString,
                     armorTraining.Icon,
                     FeatureGroup.CombatFeat,
                     Helpers.PrerequisiteFeature(armorTraining),
-                    Helpers.PrerequisiteClassLevel(fighter, 3), Helpers.Create<ArmoredJuggernautLogic>(),
+                    Helpers.PrerequisiteClassLevel(fighter, 3),
                     Helpers.Create<ArmorSpecializationLogic>(b => b.BlueprintArmorType = armorType));
-                    featureList.Add(armorSpecializationForType);
+                    armorSpecializationFeatureList.Add(guidString, armorSpecializationForType);
                 }
             }
-            armorSpecialization.SetFeatures(featureList);
+            armorSpecialization.SetFeatures(armorSpecializationFeatureList.Values);
 
             list.Add(armorSpecialization);
 
@@ -180,7 +182,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     armorTraining.Icon,
                     FeatureGroup.CombatFeat,
                     Helpers.PrerequisiteFeature(armorTraining),
-                    Helpers.PrerequisiteClassLevel(fighter, 3), Helpers.Create<ArmoredJuggernautLogic>(),
+                    Helpers.PrerequisiteClassLevel(fighter, 3),
                     Helpers.Create<SteelHeadbuttLogic>()));
 
             return list;

@@ -35,7 +35,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
                 }
 
                 int weaponEnhancementBonus = AdvancedWeaponTraining.GetWeaponEnhancementBonus(base.Owner);
-                Main.logger.Log("weaponEnhancementBonus: " + weaponEnhancementBonus);
                 acBonus += weaponEnhancementBonus / 2;
 
                 if(OldValue != acBonus)
@@ -84,7 +83,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public override void OnRecalculate()
         {
-            Main.logger.Log("OnRecalculate");
             CheckForWeaponTraining();
         }
 

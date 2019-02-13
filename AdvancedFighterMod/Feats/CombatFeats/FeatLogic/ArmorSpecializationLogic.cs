@@ -46,7 +46,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
         }
         public void CheckArmor()
         {
-            if(base.Owner.Body.Armor.HasArmor && base.Owner.Body.Armor.Armor.Blueprint.Type == BlueprintArmorType)
+            if(base.Owner.Body.Armor.HasArmor && base.Owner.Body.Armor.Armor.Blueprint.Type.DefaultName == BlueprintArmorType.DefaultName)
             {
                 ActivateModifier();
             }

@@ -23,9 +23,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
         private void ManageGroupSize()
         {
             int currentGroupSize = base.Owner.Ensure<UnitPartActivatableAbility>().GetGroupSize(this.Group);
-            Main.logger.Log("currentGroupSize" + currentGroupSize);
             int currentRanks = base.Owner.Progression.Features.GetRank(Feature);
-            Main.logger.Log("currentRanks" + currentRanks);
             for(int i = 0; i < currentGroupSize; i++)
             {
                 this.Owner.Ensure<UnitPartActivatableAbility>().DecreaseGroupSize(this.Group);

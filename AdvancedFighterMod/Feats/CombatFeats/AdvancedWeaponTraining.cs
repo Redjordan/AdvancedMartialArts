@@ -476,7 +476,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
         {
             foreach (ItemEnchantment enchantment in enchantments)
             {
-                Main.logger.Log("ItemEnchantment: " + enchantment);
                 if (enchantment.Blueprint.GetComponent<WeaponEnhancementBonus>() != null)
                 {
                     return enchantment.Blueprint.GetComponent<WeaponEnhancementBonus>().EnhancementBonus;

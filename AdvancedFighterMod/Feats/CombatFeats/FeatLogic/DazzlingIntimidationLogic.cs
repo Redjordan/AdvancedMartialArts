@@ -111,7 +111,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public override void OnRecalculate()
         {
-            Main.logger.Log("OnRecalculate");
             CheckForWeaponTraining();
         }
 

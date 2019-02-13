@@ -28,7 +28,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
                         int basePool = 1;
 
                         int weaponTrainingValue = AdvancedWeaponTraining.GetWeaponTrainingRank(unit, ((WarriorSpiritPoolLogic)__instance).WeaponTraining);
-                        Main.logger.Log("weaponTrainingValue: " + weaponTrainingValue);
 
                         __result = basePool + weaponTrainingValue;
                     }

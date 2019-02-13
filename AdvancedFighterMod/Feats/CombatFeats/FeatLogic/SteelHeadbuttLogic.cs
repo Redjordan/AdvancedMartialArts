@@ -58,26 +58,19 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public void ActivateModifier()
         {
-            Main.logger.Log("SteelHeadbutt ActivateModifier headbuttSlot: " + headbuttSlot);
             if(headbuttSlot == null)
             {
                 headbuttSlot = -1;
-                Main.logger.Log("SteelHeadbutt ActivateModifier");
                 int armorEnhancement = GameHelper.GetItemEnhancementBonus(base.Owner.Body.Armor.Armor);
-                Main.logger.Log("SteelHeadbutt armorEnhancement: " + armorEnhancement);
                 string assetID = Helpers.getGuid("SteelHeadbuttType" + base.Owner.Body.Armor.Armor.Blueprint.ProficiencyGroup + "Enhancement" + armorEnhancement);
-                Main.logger.Log("SteelHeadbutt assetID: " + assetID);
 
                 BlueprintItemWeapon headbutt = Main.library.Get<BlueprintItemWeapon>(assetID);
-                Main.logger.Log("SteelHeadbutt headbutt: " + headbutt);
                 headbuttSlot = base.Owner.Body.AddAdditionalLimb(headbutt, true);
-                Main.logger.Log("SteelHeadbutt headbuttSlot: " + headbuttSlot);
             }
         }
 
         public void DeactivateModifier()
         {
-            Main.logger.Log("SteelHeadbutt DeactivateModifier headbuttSlot: " + headbuttSlot);
             if(headbuttSlot != null)
             {
                 base.Owner.Body.RemoveAdditionalLimb((int)headbuttSlot);

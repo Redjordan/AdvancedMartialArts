@@ -43,11 +43,9 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         private void Activate()
         {
-            Main.logger.Log("ArmedBraveryLogic OnTurnOn");
             if (modifier == null)
             {
                 int value = base.Owner.Progression.Features.GetRank(AdvancedWeaponTraining.BraveryFeature);
-                Main.logger.Log("ArmedBraveryLogic value: " + value);
                 modifier = base.Owner.Stats.SaveWill.AddModifier(value, this, ModifierDescriptor.UntypedStackable);
                 IntimidateBonus = value * 2;
             }
