@@ -35,7 +35,6 @@ Some Fighter weapon groups were missing and were added:
 
     Monk
     Thrown
-    Flails
 
 
 Classes
