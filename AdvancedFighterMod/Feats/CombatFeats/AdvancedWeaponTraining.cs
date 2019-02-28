@@ -135,10 +135,8 @@ namespace AdvancedMartialArts.Feats.CombatFeats
             var features = new List<BlueprintFeature>();
             FillWeaponFocusAndWeaponTrainingDictionaries();
             CreateAbilityMoveActions();
-            var noFeature = Helpers.PrerequisiteNoFeature(null);
 
 
-            BlueprintFeature twoWeaponFightingBlueprintFeature = library.Get<BlueprintFeature>("ac8aaf29054f5b74eb18f2af950e752d");
             foreach (var weaponTraining in _weaponTrainingBluePrints)
             {
                 string weaponTrainingName = getWeaponTrainingName(weaponTraining, true);
@@ -183,7 +181,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
                     weaponTraining.PrerequisiteFeature(),
-                    WeaponTraining.PrerequisiteFeature(),
                     Helpers.Create<CombatManeuverDefenseLogic>(x => x.WeaponTraining = weaponTraining)
                 ));
 
@@ -195,7 +192,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
                     weaponTraining.PrerequisiteFeature(),
-                    WeaponTraining.PrerequisiteFeature(),
                     Helpers.Create<DazzlingIntimidationLogic>(x => x.WeaponTraining = weaponTraining)
                 ));
 
@@ -207,7 +203,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
                     weaponTraining.PrerequisiteFeature(),
-                    WeaponTraining.PrerequisiteFeature(),
                     Helpers.Create<DefensiveWeaponTrainingLogic>(x => x.WeaponTraining = weaponTraining)
                 ));
 
@@ -218,9 +213,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("EffortlessDualWielding" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature(),
-                    twoWeaponFightingBlueprintFeature.PrerequisiteFeature(),
                     Helpers.Create<EffortlessDualWieldingLogic>(x => x.WeaponTraining = weaponTraining)
                 ));
 
@@ -231,7 +224,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("VersatileTraining" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature());
 
                 List<BlueprintFeature> versatileTrainingFeatures = new List<BlueprintFeature>();
@@ -247,7 +239,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                             Helpers.getGuid("VersatileTraining" + weaponTrainingDisplayName + statType),
                             WeaponTraining.Icon,
                             FeatureGroup.CombatFeat,
-                            WeaponTraining.PrerequisiteFeature(),
                             weaponTraining.PrerequisiteFeature(),
                             Helpers.Create<SetSkillRankToBabLogic>(x => x.type = statType)));
                     }
@@ -264,7 +255,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("FightersFinesse" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature(),
                     weaponFinesse.PrerequisiteFeature(),
                     Helpers.Create<FightersFinesseLogic>(x => x.WeaponTraining = weaponTraining));
@@ -277,7 +267,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("TrainedGrace" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature(),
                     weaponFinesse.PrerequisiteFeature(),
                     Helpers.Create<TrainedGraceLogic>(x =>
@@ -293,7 +282,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("FightersReflexes" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature(),
                     Helpers.Create<FightersReflexesLogic>(x => x.WeaponTraining = weaponTraining)));
 
@@ -304,7 +292,6 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                     Helpers.getGuid("FightersTactics" + weaponTrainingName),
                     WeaponTraining.Icon,
                     FeatureGroup.CombatFeat,
-                    WeaponTraining.PrerequisiteFeature(),
                     weaponTraining.PrerequisiteFeature(),
                     Helpers.Create<FightersTacticsLogic>(x => x.WeaponTraining = weaponTraining)));
             }
