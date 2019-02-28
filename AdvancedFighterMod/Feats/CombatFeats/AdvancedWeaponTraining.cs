@@ -333,23 +333,23 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 }
             }
 
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("1b18d6a1297950f4bba9d121cfc735e9"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("2a0ce0186af38ed419f47fce16f93c2a"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("4923409590bdb604590e04da4253ab78"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("e0401ecade57d4144978dbd714c4069f"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("9cdfc2a236ee6d349ad6d8a2170477d5"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("a7a7ad500d4e2a847b450b85cbe68d65"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("8bb8579622b823c4285d851274a009c3"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("3ab76d4a8aa9e4c459add32139080206"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("c062c6d16aecddc4ab67d9c783b2ad46"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("d5c04077fc063e44784384a00377b7cf"));
-            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("bd75a95b36a3cd8459513ee1932c8c22"));
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("1b18d6a1297950f4bba9d121cfc735e9")); // WeaponTrainingAxes
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("2a0ce0186af38ed419f47fce16f93c2a")); // WeaponTrainingHeavyBlades
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("4923409590bdb604590e04da4253ab78")); // WeaponTrainingLightBlades
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("e0401ecade57d4144978dbd714c4069f")); // WeaponTrainingBows
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("9cdfc2a236ee6d349ad6d8a2170477d5")); // WeaponTrainingCrossbows
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("a7a7ad500d4e2a847b450b85cbe68d65")); // WeaponTrainingDouble
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("8bb8579622b823c4285d851274a009c3")); // WeaponTrainingHammers
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("3ab76d4a8aa9e4c459add32139080206")); // WeaponTrainingNatural
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("c062c6d16aecddc4ab67d9c783b2ad46")); // WeaponTrainingPolearms
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("d5c04077fc063e44784384a00377b7cf")); // WeaponTrainingSpears
+            _weaponTrainingBluePrints.Add(library.Get<BlueprintFeature>("bd75a95b36a3cd8459513ee1932c8c22")); // WeaponTrainingClose
             BlueprintFeature twoWeaponFeature = library.Get<BlueprintFeature>("88da2a5dfc505054f933bb81014e864f");
             _weaponTrainingBluePrints.Add(twoWeaponFeature);
 
             CreateWeaponTrainingForWeaponFighterGroup(WeaponFighterGroup.None, weaponFighterGroupToWeaponCategory[WeaponFighterGroup.None]);
             CreateWeaponTrainingForWeaponFighterGroup(WeaponFighterGroup.Thrown, weaponFighterGroupToWeaponCategory[WeaponFighterGroup.Thrown]);
-            CreateWeaponTrainingForWeaponFighterGroup(WeaponFighterGroup.Flails, weaponFighterGroupToWeaponCategory[WeaponFighterGroup.Flails]);
+            //CreateWeaponTrainingForWeaponFighterGroup(WeaponFighterGroup.Flails, weaponFighterGroupToWeaponCategory[WeaponFighterGroup.Flails]);
             CreateWeaponTrainingForWeaponFighterGroup(WeaponFighterGroup.Monk, weaponFighterGroupToWeaponCategory[WeaponFighterGroup.Monk]);
 
 
