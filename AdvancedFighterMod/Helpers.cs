@@ -48,6 +48,7 @@ using Kingmaker.Utility;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography;
@@ -55,6 +56,7 @@ using System.Text;
 using UnityEngine;
 using static Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
+using Vector2 = UnityEngine.Vector2;
 
 namespace AdvancedMartialArts
 {

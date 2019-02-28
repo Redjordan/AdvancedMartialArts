@@ -18,11 +18,12 @@ using Kingmaker.UI.Common.Animations;
 using Kingmaker.UI.LevelUp;
 using Kingmaker.Utility;
 using UnityEngine;
-using UnityModManagerNet;
 using AdvancedMartialArts.Classes.Slayer;
 using AdvancedMartialArts.Feats.CombatFeats;
 using AdvancedMartialArts.Feats.GeneralFeats;
+using AdvancedMartialArts.Race;
 using Harmony12;
+using UnityModManagerNet;
 
 namespace AdvancedMartialArts
 {
@@ -48,9 +49,13 @@ namespace AdvancedMartialArts
 
                 SafeLoad(AdvancedWeaponTraining.Load, "Advanced Weapon Training");
 
+                SafeLoad(CombatFeats.Load, "CombatFeats");
+
                 SafeLoad(GeneralFeats.Load, "GeneralFeats");
 
                 SafeLoad(Slayer.Load, "Slayer");
+
+                SafeLoad(Races.Load, "Races");
 #if DEBUG
                 // Perform extra sanity checks in debug builds.
                 SafeLoad(CheckPatchingSuccess, "Check that all patches are used, and were loaded");
