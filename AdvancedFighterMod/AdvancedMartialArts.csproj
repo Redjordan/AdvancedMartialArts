@@ -46,7 +46,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -110,6 +109,7 @@
     <Compile Include="Feats\GeneralFeats\GeneralFeats.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\AnimalAllyAdjustToLevelLogic.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\NatureSoulLogic.cs" />
+    <Compile Include="Feats\GeneralFeats\Logic\ReplaceAttackStatForWeaponCategoryLogic.cs" />
     <Compile Include="HelperClasses\BlueprintParametrizedFeatureWeaponTraining.cs" />
     <Compile Include="HelperClasses\ComponentAppliedOnceOnLevelUp.cs" />
     <Compile Include="HelperClasses\FakeLocalizedString.cs" />
@@ -127,6 +127,10 @@
     </Compile>
     <Compile Include="Race\Races.cs" />
     <Compile Include="Testing\SaveCompatibility.cs" />
+    <Compile Include="Traits\Logic\ReplaceBaseStatForStatTypeLogic.cs" />
+    <Compile Include="Traits\Logic\RiverRatDaggerTraitBonusLogic.cs" />
+    <Compile Include="Traits\RegionalTraits.cs" />
+    <Compile Include="Traits\SocialTraits.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

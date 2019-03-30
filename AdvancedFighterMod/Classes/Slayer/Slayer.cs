@@ -227,7 +227,7 @@ namespace AdvancedMartialArts.Classes.Slayer
                 Helpers.getGuid("StudiedTargetSwift"),
                 detectMagic.Icon,
                 FeatureGroup.FavoriteEnemy,
-                Helpers.CreateAddFacts(studiedTarget)
+                Helpers.CreateAddFacts(studiedTargetSwift)
                 );
             featureSwift.HideInCharacterSheetAndLevelUp = true;
 

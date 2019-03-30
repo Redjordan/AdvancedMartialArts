@@ -50,7 +50,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
@@ -893,16 +892,13 @@ namespace AdvancedMartialArts
         //
         // Essentially, this prevents us from inadvertantly break existing saves that
         // use features from the mod.
-        internal static String MergeIds(String guid1, String guid2, String guid3 = null)
+        internal static String MergeIds(String guidString1, String guidString2, String guidString3 = null)
         {
-            // It'd be nice if these GUIDs were already in integer form.
-            var id = BigInteger.Parse(guid1, NumberStyles.HexNumber);
-            id ^= BigInteger.Parse(guid2, NumberStyles.HexNumber);
-            if (guid3 != null)
+            if (guidString3 != null)
             {
-                id ^= BigInteger.Parse(guid3, NumberStyles.HexNumber);
+                return getGuid(guidString1 + guidString2 + guidString3);
             }
-            return id.ToString("x32");
+            return getGuid(guidString1 + guidString2);
         }
 
         internal static String getGuid(String s)

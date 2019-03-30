@@ -22,6 +22,7 @@ using AdvancedMartialArts.Classes.Slayer;
 using AdvancedMartialArts.Feats.CombatFeats;
 using AdvancedMartialArts.Feats.GeneralFeats;
 using AdvancedMartialArts.Race;
+using AdvancedMartialArts.Traits;
 using Harmony12;
 using UnityModManagerNet;
 
@@ -41,8 +42,6 @@ namespace AdvancedMartialArts
 
                 EnableGameLogging();
 
-                SafeLoad(LoadCustomPortraits, "Custom Portraits in main portrait selection");
-
                 SafeLoad(Helpers.Load, "Initialization code");
 
                 SafeLoad(AdvancedArmorTraining.Load, "Advanced Armor Training");
@@ -56,6 +55,11 @@ namespace AdvancedMartialArts
                 SafeLoad(Slayer.Load, "Slayer");
 
                 SafeLoad(Races.Load, "Races");
+
+                SafeLoad(SocialTraits.Load, "SocialTraits");
+
+                SafeLoad(RegionalTraits.Load, "RegionalTraits");
+
 #if DEBUG
                 // Perform extra sanity checks in debug builds.
                 SafeLoad(CheckPatchingSuccess, "Check that all patches are used, and were loaded");
@@ -71,8 +75,6 @@ namespace AdvancedMartialArts
         public static UnityModManager.ModEntry.ModLogger logger;
 
         internal static Settings settings;
-
-        static PortraitLoader portraitLoader;
 
         static Harmony12.HarmonyInstance harmonyInstance;
 
@@ -101,90 +103,6 @@ namespace AdvancedMartialArts
             UberLogger.Logger.AddLogger(new UberLoggerFilter(new UberLoggerFile("GameLog.txt", dataPath), UberLogger.LogSeverity.Warning, "MatchLight"));
 
             UberLogger.Logger.Enabled = true;
-        }
-
-        static void LoadCustomPortraits()
-        {
-            if (!settings.ShowCustomPortraits) return;
-
-            var charGen = BlueprintRoot.Instance.CharGen;
-            var customPortraits = new List<BlueprintPortrait>();
-            using (var md5 = MD5.Create())
-            {
-                foreach (var id in CustomPortraitsManager.Instance.GetExistingCustomPortraitIds())
-                {
-                    var portrait = UnityEngine.Object.Instantiate(charGen.CustomPortrait);
-                    portrait.name = $"CustomPortrait${id}";
-
-                    long value;
-                    var guid = long.TryParse(id, out value) ? id : GetMd5Hash(md5, id);
-                    library.AddAsset(portrait, Helpers.MergeIds("c3d4e15de2444b528c734fac8eb75ba2", guid));
-                    portrait.Data = new PortraitData(id);
-                    customPortraits.Add(portrait);
-                }
-            }
-
-            if (customPortraits.Count > 0)
-            {
-                // Start a coroutine to preload the small sprite images.
-                portraitLoader = new GameObject("PortraitLoader").AddComponent<PortraitLoader>();
-                portraitLoader.Run(customPortraits);
-
-                charGen.Portraits = charGen.Portraits.AddToArray(customPortraits);
-            }
-        }
-
-        static string GetMd5Hash(MD5 md5, string input)
-        {
-            // Note: this uses MD5 to hash a string to 128-bits, it's not for any security purpose.
-            var str = new StringBuilder();
-            foreach (var b in md5.ComputeHash(Encoding.UTF8.GetBytes(input)))
-            {
-                str.Append(b.ToString("x2"));
-            }
-
-            Log.Write($"md5 hash of '${input}' is: {str}");
-            return str.ToString();
-        }
-
-
-        class PortraitLoader : MonoBehaviour
-        {
-            internal void Run(List<BlueprintPortrait> portraits)
-            {
-                UnityEngine.Object.DontDestroyOnLoad(gameObject);
-                gameObject.hideFlags = HideFlags.HideAndDontSave;
-                StartCoroutine(Load(portraits));
-            }
-
-            IEnumerator<object> Load(List<BlueprintPortrait> portraits)
-            {
-                var start = DateTime.Now;
-                var watch = new Stopwatch();
-                var setPortraitImage = Helpers.CreateFieldSetter<PortraitData>("m_PortraitImage");
-                var manager = CustomPortraitsManager.Instance;
-                var baseSmall = BlueprintRoot.Instance.CharGen.BasePortraitSmall;
-                foreach (var portrait in portraits)
-                {
-                    // Don't block the game UI thread during load.
-                    yield return null;
-
-                    watch.Start();
-                    // Only load the small portrait eagerly; let the others load if needed.
-                    var data = portrait.Data;
-                    var path = manager.GetSmallPortraitPath(data.CustomId);
-                    // CustomPortraitsManager uses sync IO internally.
-                    //
-                    // I prototyped async file IO too, but it makes little difference since the
-                    // entire load time is less than a second for hundreds of portraits.
-                    setPortraitImage(data, manager.LoadPortrait(path, baseSmall, false));
-                    watch.Stop();
-                }
-
-                Log.Write($"Loaded {portraits.Count} portraits, took: {watch.Elapsed}, time since start: {DateTime.Now - start}");
-                Main.portraitLoader = null;
-                UnityEngine.Object.Destroy(gameObject);
-            }
         }
 
         // We don't want one patch failure to take down the entire mod, so they're applied individually.
@@ -323,15 +241,7 @@ namespace AdvancedMartialArts
 
     public class Settings : UnityModManager.ModSettings
     {
-        public bool EldritchKnightFix = true;
-
-        public bool ShowCustomPortraits = false;
-
-        public bool RelaxAncientLorekeeper = false;
-
-        public bool RelaxTonguesCurse = false;
-
-        public override void Save(UnityModManager.ModEntry modEntry)
+       public override void Save(UnityModManager.ModEntry modEntry)
         {
             UnityModManager.ModSettings.Save<Settings>(this, modEntry);
         }

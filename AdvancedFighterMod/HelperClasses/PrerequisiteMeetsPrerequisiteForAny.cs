@@ -31,5 +31,10 @@ namespace AdvancedMartialArts.HelperClasses
 
             return false;
         }
+
+        public override string GetUIText()
+        {
+            return "Can take any of the following options: " + string.Join(",", Features.Select(x => x.name));
+        }
     }
 }
