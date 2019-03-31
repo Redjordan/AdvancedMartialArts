@@ -110,6 +110,7 @@
     <Compile Include="Feats\GeneralFeats\Logic\AnimalAllyAdjustToLevelLogic.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\NatureSoulLogic.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\ReplaceAttackStatForWeaponCategoryLogic.cs" />
+    <Compile Include="HelperClasses\BigInteger.cs" />
     <Compile Include="HelperClasses\BlueprintParametrizedFeatureWeaponTraining.cs" />
     <Compile Include="HelperClasses\ComponentAppliedOnceOnLevelUp.cs" />
     <Compile Include="HelperClasses\FakeLocalizedString.cs" />
