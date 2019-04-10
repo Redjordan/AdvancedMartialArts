@@ -52,7 +52,7 @@ namespace AdvancedMartialArts.Feats.GeneralFeats
 
                         guidedHandFeatures.Add(Helpers.CreateFeature(
                             "GuidedHand" + feature.AssetGuid,
-                            "Guided Hand",
+                            "Guided Hand (" + feature.name + ")",
                             "With your deity’s favored weapon, you can use your Wisdom modifier instead of your Strength or Dexterity modifier on attack rolls.",
                             Helpers.getGuid("GuidedHand" + feature.AssetGuid),
                             feature.Icon,

@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AdvancedMartialArts.AltRacialTraits;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
@@ -59,6 +60,8 @@ namespace AdvancedMartialArts
                 SafeLoad(SocialTraits.Load, "SocialTraits");
 
                 SafeLoad(RegionalTraits.Load, "RegionalTraits");
+
+                SafeLoad(AlternativeRacialTraits.Load, "AlternativeRacialTraits");
 
 #if DEBUG
                 // Perform extra sanity checks in debug builds.

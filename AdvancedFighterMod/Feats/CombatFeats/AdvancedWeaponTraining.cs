@@ -70,9 +70,9 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 "e10b3aca8e8c4075b96ac6b5f27dae27",
                 WeaponTraining.Icon,
                 FeatureGroup.CombatFeat,
-                Helpers.PrerequisiteFeature(WeaponTraining, true),
-                Helpers.PrerequisiteFeature(twoHandedWeaponFeature, true),
-                Helpers.PrerequisiteClassLevel(fighter, 5)
+                WeaponTraining.PrerequisiteFeature(true),
+                twoHandedWeaponFeature.PrerequisiteFeature(true),
+                fighter.PrerequisiteClassLevel(5)
             );
 
             var features = getAdvancedWeaponTraining(fighter);
@@ -95,7 +95,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 WeaponTraining.Icon,
                 FeatureGroup.CombatFeat,
                 Helpers.PrerequisiteFeature(WeaponTraining),
-                Helpers.PrerequisiteClassLevel(fighter, 9)
+                fighter.PrerequisiteClassLevel(9)
             );
 
             BlueprintFeatureSelection advancedWeaponTrainingForSelectionLVL13 = Helpers.CreateFeatureSelection("AdvancedWeaponTrainingLVL13",
@@ -104,8 +104,8 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 Helpers.getGuid("AdvancedWeaponTrainingLVL13"),
                 WeaponTraining.Icon,
                 FeatureGroup.CombatFeat,
-                Helpers.PrerequisiteFeature(WeaponTraining),
-                Helpers.PrerequisiteClassLevel(fighter, 13)
+                WeaponTraining.PrerequisiteFeature(),
+                fighter.PrerequisiteClassLevel(13)
             );
 
             BlueprintFeatureSelection advancedWeaponTrainingForSelectionLVL17 = Helpers.CreateFeatureSelection("AdvancedWeaponTrainingLVL17",
@@ -115,7 +115,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats
                 WeaponTraining.Icon,
                 FeatureGroup.CombatFeat,
                 Helpers.PrerequisiteFeature(WeaponTraining),
-                Helpers.PrerequisiteClassLevel(fighter, 17)
+                fighter.PrerequisiteClassLevel(17)
             );
             advancedWeaponTrainingForSelection.SetFeatures(features);
             advancedWeaponTrainingForSelection.AddComponent(prerequisite);

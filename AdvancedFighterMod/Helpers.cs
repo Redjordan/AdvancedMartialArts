@@ -53,6 +53,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using AdvancedMartialArts.HelperClasses;
+using Kingmaker.UnitLogic.Class.LevelUp;
 using UnityEngine;
 using static Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -371,6 +372,14 @@ namespace AdvancedMartialArts
         }
 
         static readonly FastSetter blueprintArchetype_set_Icon = Helpers.CreateFieldSetter<BlueprintArchetype>("m_Icon");
+
+        public static void AddSelection(this BlueprintFeatureSelection feat, LevelUpState state, UnitDescriptor unit, int level)
+        {
+            // TODO: we may want to add the selection feat to the unit.
+            // (But I don't think Respec mod will be able to clear it out if we do that.)
+            // unit.AddFact(feat);
+            state.AddSelection(null, feat, feat, level);
+        }
 
         public static void SetIcon(this BlueprintArchetype self, Sprite icon)
         {
