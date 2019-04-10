@@ -30,10 +30,12 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
                 !base.Owner.Body.SecondaryHand.MaybeWeapon.Blueprint.IsLight)
             {
                 Activate();
+                Main.logger.Log("Activate");
             }
             else
             {
                 Deactivate();
+                Main.logger.Log("Deactivate");
             }
         }
 
@@ -62,7 +64,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public override void OnTurnOff()
         {
-            CheckWeapons();
+            Deactivate();
         }
 
         public void HandleEquipmentSlotUpdated(ItemSlot slot, ItemEntity previousItem)

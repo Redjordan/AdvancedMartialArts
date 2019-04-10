@@ -50,9 +50,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
+using AdvancedMartialArts.HelperClasses;
+using Kingmaker.UnitLogic.Class.LevelUp;
 using UnityEngine;
 using static Kingmaker.UnitLogic.ActivatableAbilities.ActivatableAbilityResourceLogic;
 using static Kingmaker.UnitLogic.Commands.Base.UnitCommand;
@@ -371,6 +372,14 @@ namespace AdvancedMartialArts
         }
 
         static readonly FastSetter blueprintArchetype_set_Icon = Helpers.CreateFieldSetter<BlueprintArchetype>("m_Icon");
+
+        public static void AddSelection(this BlueprintFeatureSelection feat, LevelUpState state, UnitDescriptor unit, int level)
+        {
+            // TODO: we may want to add the selection feat to the unit.
+            // (But I don't think Respec mod will be able to clear it out if we do that.)
+            // unit.AddFact(feat);
+            state.AddSelection(null, feat, feat, level);
+        }
 
         public static void SetIcon(this BlueprintArchetype self, Sprite icon)
         {
@@ -896,13 +905,24 @@ namespace AdvancedMartialArts
         internal static String MergeIds(String guid1, String guid2, String guid3 = null)
         {
             // It'd be nice if these GUIDs were already in integer form.
-            var id = BigInteger.Parse(guid1, NumberStyles.HexNumber);
-            id ^= BigInteger.Parse(guid2, NumberStyles.HexNumber);
-            if (guid3 != null)
+            var id = new BigInteger(guid1, 16);
+            id ^= new BigInteger(guid2, 16);
+            if(guid3 != null)
             {
-                id ^= BigInteger.Parse(guid3, NumberStyles.HexNumber);
+                id ^= new BigInteger(guid3, 16);
             }
-            return id.ToString("x32");
+            string idString = id.ToString(16);
+            if(idString.Length > 32)
+            {
+                return idString.Substring(0, 32);
+            }
+
+            while(idString.Length < 32)
+            {
+                idString = "0" + idString;
+            }
+
+            return idString;
         }
 
         internal static String getGuid(String s)

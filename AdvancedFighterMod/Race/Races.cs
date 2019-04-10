@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
+using Kingmaker.EntitySystem.Stats;
+using Kingmaker.Enums;
+using Kingmaker.UnitLogic.FactLogic;
 
 namespace AdvancedMartialArts.Race
 {
@@ -28,6 +31,12 @@ namespace AdvancedMartialArts.Race
             {
                 Game.Instance.BlueprintRoot.Progression.CharacterRaces = races.AddToArray(Goblin);
             }
+
+            BlueprintFeature stealthy = library.Get<BlueprintFeature>("610652378253d3845bb70f005c084daa");
+            stealthy.ComponentsArray = new BlueprintComponent[]
+            {
+                StatType.SkillStealth.CreateAddStatBonus(4, ModifierDescriptor.Racial)
+            };
         }
     }
 }

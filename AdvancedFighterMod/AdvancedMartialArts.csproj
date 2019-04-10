@@ -46,7 +46,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +75,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltRacialTraits\AlternativeRacialTraits.cs" />
+    <Compile Include="AltRacialTraits\Facts\AddFeatureParametrizedCustom.cs" />
+    <Compile Include="AltRacialTraits\Facts\AddSpellResistanceBuff.cs" />
+    <Compile Include="AltRacialTraits\Facts\AddStatBonusForFeatures.cs" />
+    <Compile Include="AltRacialTraits\Facts\IncreaseCasterLevelUpToCharacterLevel.cs" />
     <Compile Include="Classes\Slayer\Logic\SetStudiedTargetFact.cs" />
     <Compile Include="Classes\Slayer\Logic\SetStudiedTargetOnSneakAttack.cs" />
     <Compile Include="Classes\Slayer\Logic\StudiedTargetContextActionApplyBuff.cs" />
@@ -110,10 +114,17 @@
     <Compile Include="Feats\GeneralFeats\GeneralFeats.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\AnimalAllyAdjustToLevelLogic.cs" />
     <Compile Include="Feats\GeneralFeats\Logic\NatureSoulLogic.cs" />
+    <Compile Include="Feats\GeneralFeats\Logic\ReplaceAttackStatForWeaponCategoryLogic.cs" />
+    <Compile Include="HelperClasses\ApplyClassMechanics_Apply_Patch.cs" />
+    <Compile Include="HelperClasses\BigInteger.cs" />
+    <Compile Include="HelperClasses\BlueprintAbilityPrerequisite.cs" />
     <Compile Include="HelperClasses\BlueprintParametrizedFeatureWeaponTraining.cs" />
     <Compile Include="HelperClasses\ComponentAppliedOnceOnLevelUp.cs" />
     <Compile Include="HelperClasses\FakeLocalizedString.cs" />
     <Compile Include="HelperClasses\PrerequisiteMeetsPrerequisiteForAny.cs" />
+    <Compile Include="HelperClasses\RemoveFeature.cs" />
+    <Compile Include="HelperClasses\SelectFeature_Apply_Patch.cs" />
+    <Compile Include="HelperClasses\SpellBookCharacteristics_Setup_Patch.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="HelperClasses\AddFactOnLevelRange.cs" />
     <Compile Include="HelperClasses\AddFactOnLevelUpCondtion.cs" />
@@ -127,6 +138,10 @@
     </Compile>
     <Compile Include="Race\Races.cs" />
     <Compile Include="Testing\SaveCompatibility.cs" />
+    <Compile Include="Traits\Logic\ReplaceBaseStatForStatTypeLogic.cs" />
+    <Compile Include="Traits\Logic\RiverRatDaggerTraitBonusLogic.cs" />
+    <Compile Include="Traits\RegionalTraits.cs" />
+    <Compile Include="Traits\SocialTraits.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -145,6 +160,7 @@
     <Content Include="Resources\Medium.png" />
     <Content Include="Resources\Small.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
