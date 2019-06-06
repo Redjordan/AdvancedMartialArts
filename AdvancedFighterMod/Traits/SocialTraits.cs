@@ -59,7 +59,7 @@ namespace AdvancedMartialArts.Traits
                     FeatureGroup.None,
                     Helpers.Create<ReplaceBaseStatForStatTypeLogic>(x =>
                     {
-                        x.StatTypeToReplaceBastStatFor = StatType.SkillPersuasion;
+                        x.StatTypeToReplaceBastStatFor = StatType.SkillUseMagicDevice;
                         x.NewBaseStatType = StatType.Intelligence;
                     }));
 

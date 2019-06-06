@@ -31,12 +31,6 @@ namespace AdvancedMartialArts.Race
             {
                 Game.Instance.BlueprintRoot.Progression.CharacterRaces = races.AddToArray(Goblin);
             }
-
-            BlueprintFeature stealthy = library.Get<BlueprintFeature>("610652378253d3845bb70f005c084daa");
-            stealthy.ComponentsArray = new BlueprintComponent[]
-            {
-                StatType.SkillStealth.CreateAddStatBonus(4, ModifierDescriptor.Racial)
-            };
         }
     }
 }

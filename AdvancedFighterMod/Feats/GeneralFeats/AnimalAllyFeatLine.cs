@@ -134,7 +134,6 @@ namespace AdvancedMartialArts.Feats.GeneralFeats
         private static BlueprintFeature AddSpiderCompanion()
         {
             PortraitData portraitData = new PortraitData("AdvancedMartialArtsSpider");
-            portraitData.UploadImages(true);
 
             BlueprintPortrait portrait = Helpers.Create<BlueprintPortrait>();
             portrait.Data = portraitData;

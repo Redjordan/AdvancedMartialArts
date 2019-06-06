@@ -31,7 +31,7 @@ namespace AdvancedMartialArts.HelperClasses
             {
                 if (__instance.GetType() == typeof(BlueprintParametrizedFeatureWeaponTraining))
                 {
-                    if (item.Param.GetValueOrDefault().WeaponCategory != null && !AdvancedWeaponTraining._weaponTrainingToWeaponCategory[__instance.WeaponTraining].Contains((WeaponCategory)item.Param.GetValueOrDefault().WeaponCategory))
+                    if (item.Param.WeaponCategory != null && !AdvancedWeaponTraining._weaponTrainingToWeaponCategory[__instance.WeaponTraining].Contains((WeaponCategory)item.Param.WeaponCategory))
                     {
                         __result = false;
                         return false;

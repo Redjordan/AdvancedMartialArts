@@ -473,7 +473,8 @@ namespace AdvancedMartialArts.AltRacialTraits
                         Helpers.getGuid("AncestralArms" + weaponCategory),
                         null,
                         _featureGroup,
-                        Helpers.Create<AddProficiencies>(x => x.WeaponProficiencies = new WeaponCategory[] { weaponCategory })
+                        Helpers.Create<AddProficiencies>(x => x.WeaponProficiencies = new WeaponCategory[] { weaponCategory }),
+                        Helpers.Create<AddStartingEquipment>(x => x.CategoryItems = new WeaponCategory[] { weaponCategory })
                     ));
                 }
             }
@@ -584,7 +585,7 @@ namespace AdvancedMartialArts.AltRacialTraits
 
                 SelectFeature_Apply_Patch.onApplyFeature.Add(blueprintFeature, (state, unit) =>
                 {
-                    if(blueprintFeature.Name == "AncestralArms")
+                    if(blueprintFeature.AssetGuid == Helpers.getGuid("AncestralArms"))
                     {
                         AncestralArmsSelection.AddSelection(state, unit, 1);
                     }
@@ -665,7 +666,7 @@ namespace AdvancedMartialArts.AltRacialTraits
             {
                 features.Add(Helpers.CreateFeature("Academician" + statType,
                     "Academician (" + statType + ")",
-                    "While many view aasimars’ beauty and celestial powers as a gift, in some communities an aasimar might be persecuted for being different and fall into darkness. The forces of evil delight in such a perversion of their celestial counterparts’ gifts. The aasimar gains the maw or claw tiefling alternate racial trait. This racial trait replaces the spell-like ability racial trait.",
+                    "Some gnomes are more academically inclined than their kin. Gnomes with this racial trait gain a +2 bonus on any single Knowledge skill. This racial trait replaces the obsessive racial trait.",
                     Helpers.getGuid("Academician" + statType),
                     null,
                     _featureGroup,
@@ -858,8 +859,10 @@ namespace AdvancedMartialArts.AltRacialTraits
             List<BlueprintAbility> spellLikeAbilities = new List<BlueprintAbility>();
             foreach(BlueprintFeature heritageFeature in heritageList)
             {
-                AddFacts spellLikeAbilityFact = heritageFeature.GetComponent<AddFacts>();
-                spellLikeAbilities.Add((BlueprintAbility)spellLikeAbilityFact.Facts[0]);
+                foreach(AddFacts AddFacts in heritageFeature.GetComponents<AddFacts>())
+                {
+                    spellLikeAbilities.Add((BlueprintAbility)AddFacts.Facts[0]);
+                }
             }
 
 
@@ -949,8 +952,16 @@ namespace AdvancedMartialArts.AltRacialTraits
             List<BlueprintAbility> spellLikeAbilities = new List<BlueprintAbility>();
             foreach(BlueprintFeature heritageFeature in heritageList)
             {
-                AddFacts spellLikeAbilityFact = heritageFeature.GetComponent<AddFacts>();
-                spellLikeAbilities.Add((BlueprintAbility)spellLikeAbilityFact.Facts[0]);
+                foreach(AddFacts AddFacts in heritageFeature.GetComponents<AddFacts>())
+                {
+                    foreach (var blueprintUnitFact in AddFacts.Facts)
+                    {
+                        if (blueprintUnitFact is BlueprintAbility ability)
+                        {
+                            spellLikeAbilities.Add(ability);
+                        }
+                    }
+                }
             }
 
             features.Add(Helpers.CreateFeature("ScaledSkinCold",
@@ -1087,7 +1098,8 @@ namespace AdvancedMartialArts.AltRacialTraits
             BlueprintFeature halfOrcIntimidating = library.Get<BlueprintFeature>("885f478dff2e39442a0f64ceea6339c9");
             BlueprintFeature orcWeaponFamiliarity = library.Get<BlueprintFeature>("6ab6c271d1558344cbc746350243d17d");
 
-            features.Add(Helpers.CreateFeature("SacredTattoo",
+            features.Add(Helpers.CreateFeature(
+                "SacredTattoo",
                 "Sacred Tattoo",
                 "Many half-orcs decorate themselves with tattoos, piercings, and ritual scarification, which they consider sacred markings. Half-orcs with this racial trait gain a +1 luck bonus on all saving throws. This racial trait replaces orc ferocity.",
                 Helpers.getGuid("SacredTattoo"),
@@ -1106,7 +1118,9 @@ namespace AdvancedMartialArts.AltRacialTraits
             BlueprintFeature flailProficiency = library.Get<BlueprintFeature>("6d273f46bce2e0f47a0958810dc4c7d9");
 
             // This is supposed to add whip proficiencies, Chain Fighter is supposed to give proficiencies with dire flails and spiked chains none of these are in game so the are combined into one
-            features.Add(Helpers.CreateFeature("CityRaised", "City-Raised",
+            features.Add(Helpers.CreateFeature(
+                "CityRaised",
+                "City-Raised",
                 "Half-orcs with this trait know little of their orc ancestry and were raised among humans and other half-orcs in a large city. City-raised half-orcs are proficient with flails and longswords, flails and heavy flails and receive a +2 racial bonus on Knowledge (World) checks. This racial trait replaces weapon familiarity. \n(Dev note: combines with Chain Fighter due to lack of whips, dire flails and spiked chains)",
                 Helpers.getGuid("CityRaised"),
                 null,
@@ -1120,7 +1134,9 @@ namespace AdvancedMartialArts.AltRacialTraits
                 Helpers.Create<RemoveFeature>(r => r.Feature = orcWeaponFamiliarity)));
 
             BlueprintFeature endurance = library.Get<BlueprintFeature>("54ee847996c25cd4ba8773d7b8555174");
-            features.Add(Helpers.CreateFeature("ShamansApprentice", "Shaman’s Apprentice",
+            features.Add(Helpers.CreateFeature(
+                "ShamansApprentice",
+                "Shaman’s Apprentice",
                 "Only the most stalwart survive the years of harsh treatment that an apprenticeship to an orc shaman entails. Half-orcs with this trait gain Endurance as a bonus feat. This racial trait replaces the intimidating trait.",
                 Helpers.getGuid("ShamansApprentice"),
                 null,
@@ -1136,7 +1152,9 @@ namespace AdvancedMartialArts.AltRacialTraits
                 Helpers.getGuid("HalfOrcBite"));
             bite.Type.DamageType.Physical.Form = PhysicalDamageForm.Piercing;
 
-            features.Add(Helpers.CreateFeature("Toothy", "Toothy",
+            features.Add(Helpers.CreateFeature(
+                "Toothy",
+                "Toothy",
                 "Some half-orcs’ tusks are large and sharp, granting a bite attack. This is a primary natural attack that deals 1d4 points of piercing damage. This racial trait replaces orc ferocity.",
                 Helpers.getGuid("Toothy"),
                 null,
@@ -1175,7 +1193,6 @@ namespace AdvancedMartialArts.AltRacialTraits
             BlueprintRace goblin = library.Get<BlueprintRace>("9d168ca7100e9314385ce66852385451");
             List<BlueprintFeature> features = new List<BlueprintFeature>();
             BlueprintFeature stealthy = library.Get<BlueprintFeature>("610652378253d3845bb70f005c084daa");
-
 
             string bite1d4Id = "35dfad6517f401145af54111be04d6cf";
             BlueprintItemWeapon bite = library.CopyAndAdd<BlueprintItemWeapon>(bite1d4Id, "Goblin Bite",
@@ -1252,6 +1269,34 @@ namespace AdvancedMartialArts.AltRacialTraits
                 Helpers.Create<AddFeatureOnApply>(r => r.Feature = glaiveProficiency),
                 Helpers.Create<AddFeatureOnApply>(r => r.Feature = shortswordProficiency)));
 
+            BlueprintFeature OversizedGoblin = Helpers.CreateFeature(
+                "OversizedGoblin",
+                "Oversized Goblin",
+                "A few goblins attain a much larger size than their kin. No one is exactly sure why they grow to be giants among their kind, but it’s probably due to a combination of luck, diet, and constant access to food. These goblins are monsters among their own kind, not just in height, but also in girth and in strength. If not cast out for eating all of the tribe’s food, oversized goblins often become the bosses of their tribes, and the most powerful of them become chiefs.\nOversized goblins are Medium size, and grow to 4 to 5 feet tall.They tend to be particularly obese, weighing between 225 and 275 pounds.Instead of the normal racial ability score modifiers for goblins, oversized goblins gain a + 2 bonus to Strength, a + 2 bonus to Dexterity, and a –2 penalty to Charisma.",
+                Helpers.getGuid("OversizedGoblin"),
+                null,
+                FeatureGroup.Racial,
+                goblin.PrerequisiteFeature(),
+                StatType.Strength.CreateAddStatBonus(4, ModifierDescriptor.Racial),
+                StatType.Dexterity.CreateAddStatBonus(-2, ModifierDescriptor.Racial),
+                Helpers.Create<ChangeUnitSizeCustom>(x => x.Size = Size.Medium));
+
+            BlueprintFeature SecondEditionStatBlock = Helpers.CreateFeature(
+                "SecondEditionStatBlock",
+                "2e Stat Block",
+                "Sets the goblin to their 2e StatBlock: -2 Str, +2 Dex, +2 Cha",
+                Helpers.getGuid("SecondEditionStatBlock"),
+                null,
+                FeatureGroup.Racial,
+                goblin.PrerequisiteFeature(),
+                OversizedGoblin.PrerequisiteNoFeature(),
+                StatType.Charisma.CreateAddStatBonus(4, ModifierDescriptor.Racial),
+                StatType.Dexterity.CreateAddStatBonus(-2, ModifierDescriptor.Racial));
+
+            OversizedGoblin.AddComponent(SecondEditionStatBlock.PrerequisiteNoFeature());
+            features.Add(OversizedGoblin);
+            features.Add(SecondEditionStatBlock);
+
             addAlternativeRacialTraitsSelection(goblin, features);
         }
 
@@ -1262,21 +1307,21 @@ namespace AdvancedMartialArts.AltRacialTraits
                 "Alternative Racial Traits",
                 "Select alternative racial traits",
                 Helpers.getGuid("AlternativeRacialTraitsSelection2" + race.Name),
-                null, FeatureGroup.ChannelEnergy);
+                null, FeatureGroup.AasimarHeritage);
 
             BlueprintFeatureSelection alternativeRacialTraitsSelection3 = Helpers.CreateFeatureSelection(
                 "AlternativeRacialTraitsSelection3" + race.Name,
                 "Alternative Racial Traits",
                 "Select alternative racial traits",
                 Helpers.getGuid("AlternativeRacialTraitsSelection3" + race.Name),
-                null, FeatureGroup.ChannelEnergy);
+                null, FeatureGroup.AasimarHeritage);
 
             BlueprintFeatureSelection alternativeRacialTraitsSelection = Helpers.CreateFeatureSelection(
                 "AlternativeRacialTraitsSelection" + race.Name,
                 "Alternative Racial Traits",
                 "Select alternative racial traits",
                 Helpers.getGuid("AlternativeRacialTraitsSelection" + race.Name),
-                null, FeatureGroup.ChannelEnergy);
+                null, FeatureGroup.AasimarHeritage);
 
             foreach(BlueprintFeature blueprintFeature in blueprintFeatures)
             {

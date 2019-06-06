@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AdvancedMartialArts.AltRacialTraits;
+using AdvancedMartialArts.Classes;
+using AdvancedMartialArts.Classes.Inquisitor;
 using Kingmaker;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Root;
@@ -54,6 +56,10 @@ namespace AdvancedMartialArts
                 SafeLoad(GeneralFeats.Load, "GeneralFeats");
 
                 SafeLoad(Slayer.Load, "Slayer");
+
+                SafeLoad(Inquisitor.Load, "Inquisitor");
+
+                //SafeLoad(Rogue.Load, "RogueFix");
 
                 SafeLoad(Races.Load, "Races");
 

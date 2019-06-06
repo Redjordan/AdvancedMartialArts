@@ -33,8 +33,8 @@ namespace AdvancedMartialArts.Classes.Slayer
             slayer.name = "SlayerClass";
             library.AddAsset(slayer, Helpers.getGuid("SlayerClass"));
 
-            slayer.LocalizedName = Helpers.CreateString("Slayer.Name", "Slayer");
-            slayer.LocalizedDescription = Helpers.CreateString("Slayer.Description", "Skilled at tracking down targets, slayers are consummate hunters, living for the chase and the deadly stroke that brings it to a close. Slayers spend most of their time honing their weapon skills, studying the habits and anatomy of foes, and practicing combat maneuvers.");
+            slayer.LocalizedName = Helpers.CreateString("Slayer.Name", "Slayer (MOD)");
+            slayer.LocalizedDescription = Helpers.CreateString("Slayer.Description", "Dev note: This is the mod version of the slayer. It stays in the mod to keep savegame compatibility. It is suggested to switch to the official slayer class through respecing. \n Skilled at tracking down targets, slayers are consummate hunters, living for the chase and the deadly stroke that brings it to a close. Slayers spend most of their time honing their weapon skills, studying the habits and anatomy of foes, and practicing combat maneuvers.");
             slayer.m_Icon = ranger.Icon;
             slayer.SkillPoints = 4;
             slayer.HitDie = DiceType.D10;
@@ -63,6 +63,7 @@ namespace AdvancedMartialArts.Classes.Slayer
             slayer.EquipmentEntities = ranger.EquipmentEntities;
             slayer.MaleEquipmentEntities = ranger.MaleEquipmentEntities;
             slayer.FemaleEquipmentEntities = ranger.FemaleEquipmentEntities;
+            slayer.AddComponent(slayer.PrerequisiteClassLevel(1));
 
             var progression = Helpers.CreateProgression("SlayerProgression",
                 slayer.Name,
@@ -130,7 +131,7 @@ namespace AdvancedMartialArts.Classes.Slayer
 
             BlueprintFeatureSelection slayerTalents = Helpers.CreateFeatureSelection(
                 "rogueTalents",
-                "Slayer Talents",
+                "Slayer Talents (MOD)",
                 "As a slayer gains experience, he learns a number of talents that aid him and confound his foes. Starting at 2nd level and every 2 levels thereafter, a slayer gains one slayer talent. Unless otherwise noted, a slayer cannot select an individual talent more than once.",
                 Helpers.getGuid("rogueTalents"),
                 rogueTalents.Icon,
@@ -172,7 +173,7 @@ namespace AdvancedMartialArts.Classes.Slayer
 
             BlueprintAbility studiedTarget = Helpers.CreateAbility(
                 "StudiedTargetAbilityMove",
-                "Studied Target (Move-action)",
+                "Studied Target (Move-action) (MOD)",
                 "A slayer can study an opponent he can see as a move action. The slayer then gains a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks attempted against that opponent, and a +1 bonus on weapon attack and damage rolls against it. The DCs of slayer class abilities against that opponent increase by 1. A slayer can only maintain these bonuses against one opponent at a time; these bonuses remain in effect until either the opponent is dead or the slayer studies a new target.\n" +
                 "If a slayer deals sneak attack damage to a target, he can study that target as an immediate action, allowing him to apply his studied target bonuses against that target(including to the normal weapon damage roll).\n" +
                 "At 5th, 10th, 15th, and 20th levels, the bonuses on weapon attack rolls, damage rolls, and skill checks and to slayer DCs against a studied target increase by 1.In addition, at each such interval, the slayer is able to maintain these bonuses against an additional studied target at the same time.The slayer may discard this connection to a studied target as a free action, allowing him to study another target in its place.\n" +
@@ -190,7 +191,7 @@ namespace AdvancedMartialArts.Classes.Slayer
             studiedTarget.EffectOnEnemy = AbilityEffectOnUnit.None;
 
             BlueprintFeature feature = Helpers.CreateFeature(
-                "StudiedTargetMove", "Studied Target (Move-action)",
+                "StudiedTargetMove", "Studied Target (Move-action) (MOD)",
                 "A slayer can study an opponent he can see as a move action. The slayer then gains a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks attempted against that opponent, and a +1 bonus on weapon attack and damage rolls against it. The DCs of slayer class abilities against that opponent increase by 1. A slayer can only maintain these bonuses against one opponent at a time; these bonuses remain in effect until either the opponent is dead or the slayer studies a new target.\n" +
                 "If a slayer deals sneak attack damage to a target, he can study that target as an immediate action, allowing him to apply his studied target bonuses against that target(including to the normal weapon damage roll).\n" +
                 "At 5th, 10th, 15th, and 20th levels, the bonuses on weapon attack rolls, damage rolls, and skill checks and to slayer DCs against a studied target increase by 1.In addition, at each such interval, the slayer is able to maintain these bonuses against an additional studied target at the same time.The slayer may discard this connection to a studied target as a free action, allowing him to study another target in its place.\n" +
@@ -204,7 +205,7 @@ namespace AdvancedMartialArts.Classes.Slayer
 
             BlueprintAbility studiedTargetSwift = Helpers.CreateAbility(
                 "StudiedTargetAbilitySwift",
-                "Studied Target (Swift-action)",
+                "Studied Target (Swift-action) (MOD)",
                 "A slayer can study an opponent he can see as a move action. The slayer then gains a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks attempted against that opponent, and a +1 bonus on weapon attack and damage rolls against it. The DCs of slayer class abilities against that opponent increase by 1. A slayer can only maintain these bonuses against one opponent at a time; these bonuses remain in effect until either the opponent is dead or the slayer studies a new target.\n" +
                 "If a slayer deals sneak attack damage to a target, he can study that target as an immediate action, allowing him to apply his studied target bonuses against that target(including to the normal weapon damage roll).\n" +
                 "At 5th, 10th, 15th, and 20th levels, the bonuses on weapon attack rolls, damage rolls, and skill checks and to slayer DCs against a studied target increase by 1.In addition, at each such interval, the slayer is able to maintain these bonuses against an additional studied target at the same time.The slayer may discard this connection to a studied target as a free action, allowing him to study another target in its place.\n" +
@@ -218,11 +219,11 @@ namespace AdvancedMartialArts.Classes.Slayer
                 "none",
                 Helpers.CreateRunActions(Helpers.Create<StudiedTargetContextActionApplyBuff>())
                 );
-            studiedTarget.CanTargetEnemies = true;
-            studiedTarget.EffectOnEnemy = AbilityEffectOnUnit.None;
+            studiedTargetSwift.CanTargetEnemies = true;
+            studiedTargetSwift.EffectOnEnemy = AbilityEffectOnUnit.None;
 
             BlueprintFeature featureSwift = Helpers.CreateFeature(
-                "StudiedTargetSwift", "Studied Target (Swift-action)",
+                "StudiedTargetSwift", "Studied Target (Swift-action) (MOD)",
                 "At 7th level, a slayer can study an opponent as a move or swift action.",
                 Helpers.getGuid("StudiedTargetSwift"),
                 detectMagic.Icon,
@@ -233,7 +234,7 @@ namespace AdvancedMartialArts.Classes.Slayer
 
             BlueprintFeature progressionBlueprintFeature = Helpers.CreateFeature(
                 "StudiedTargetProgression",
-                "StudiedTarget" ,
+                "Studied Target (MOD)",
                 "A slayer can study an opponent he can see as a move action. The slayer then gains a +1 bonus on Bluff, Knowledge, Perception, Sense Motive, and Survival checks attempted against that opponent, and a +1 bonus on weapon attack and damage rolls against it. The DCs of slayer class abilities against that opponent increase by 1. A slayer can only maintain these bonuses against one opponent at a time; these bonuses remain in effect until either the opponent is dead or the slayer studies a new target.\n" +
                 "If a slayer deals sneak attack damage to a target, he can study that target as an immediate action, allowing him to apply his studied target bonuses against that target(including to the normal weapon damage roll).\n" +
                 "At 5th, 10th, 15th, and 20th levels, the bonuses on weapon attack rolls, damage rolls, and skill checks and to slayer DCs against a studied target increase by 1.In addition, at each such interval, the slayer is able to maintain these bonuses against an additional studied target at the same time.The slayer may discard this connection to a studied target as a free action, allowing him to study another target in its place.\n" +
@@ -247,7 +248,7 @@ namespace AdvancedMartialArts.Classes.Slayer
             progressionBlueprintFeature.ReapplyOnLevelUp = true;
 
             BlueprintFeature setStudiedTargetOnSneakAttack = Helpers.CreateFeature(
-                "setStudiedTargetOnSneakAttack", "Studied Target (Sneak Attack)",
+                "setStudiedTargetOnSneakAttack", "Studied Target (Sneak Attack) (MOD)",
                 "If a slayer deals sneak attack damage to a target, he studies that target as an immediate action.",
                 Helpers.getGuid("setStudiedTargetOnSneakAttack"),
                 detectMagic.Icon,

@@ -1,20 +1,19 @@
-﻿using Kingmaker.Blueprints;
+﻿using Kingmaker.Blueprints.Classes;
+using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Enums;
+using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem;
 using Kingmaker.RuleSystem.Rules;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kingmaker.Blueprints.Classes.Selection;
-using Kingmaker.PubSubSystem;
 
 namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 {
-    public class FocusedWeaponLogic :  ParametrizedFeatureComponent, IInitiatorRulebookHandler<RuleCalculateWeaponStats>
+    public class FocusedWeaponLogic : ParametrizedFeatureComponent, IInitiatorRulebookHandler<RuleCalculateWeaponStats>
     {
-        readonly Dictionary<int, DiceFormula> _diceFormularPerLevelDictionary = new Dictionary<int, DiceFormula>();
+        private readonly Dictionary<int, DiceFormula> _diceFormularPerLevelDictionary = new Dictionary<int, DiceFormula>();
+
+        public BlueprintCharacterClass Class = Helpers.fighterClass;
+        public WeaponCategory Category = WeaponCategory.Nunchaku;
 
         public FocusedWeaponLogic()
         {
@@ -42,15 +41,25 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public int CalcLevel()
         {
-            return Owner.Progression.GetClassLevel(Helpers.fighterClass);
+            return Owner.Progression.GetClassLevel(Class);
+        }
+
+        private WeaponCategory getWeaponCategory()
+        {
+            if(Param != null && Param.WeaponCategory.HasValue)
+            {
+                return Param.WeaponCategory.GetValueOrDefault(WeaponCategory.UnarmedStrike);
+            }
+
+            return Category;
         }
 
         public void OnEventAboutToTrigger(RuleCalculateWeaponStats evt)
         {
-            if(evt.Weapon.Blueprint.Type.Category == Param.GetValueOrDefault().WeaponCategory)
+            if(evt.Weapon.Blueprint.Type.Category == getWeaponCategory())
             {
-                var newDiceFormular = _diceFormularPerLevelDictionary[CalcLevel()];
-                if(newDiceFormular.MaxValue(0)> evt.Weapon.Damage.MaxValue(0))
+                DiceFormula newDiceFormular = _diceFormularPerLevelDictionary[CalcLevel()];
+                if(newDiceFormular.MaxValue(0) > evt.Weapon.Damage.MaxValue(0))
                 {
                     evt.WeaponDamageDiceOverride = newDiceFormular;
                 }
@@ -59,7 +68,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         public void OnEventDidTrigger(RuleCalculateWeaponStats evt)
         {
-            
+
         }
     }
 }
