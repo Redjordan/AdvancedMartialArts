@@ -40,7 +40,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
 
         private void SetValue()
         {
-            if(base.Owner != null)
+            if(base.Owner != null && base.Owner.Body != null)
             {
                 var charLevel = CalcLevel();
                 var armorProfienceGroup = base.Owner.Body.Armor.Armor.Blueprint.ProficiencyGroup;

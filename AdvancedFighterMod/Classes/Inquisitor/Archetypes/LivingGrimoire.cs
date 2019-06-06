@@ -400,39 +400,36 @@ namespace AdvancedMartialArts.Classes.Inquisitor.Archetypes
                 null);
             WordOfGodAbilityResource.SetFixedResource(7);
 
-            AbilityEffectRunAction abilityEffectRunAction = new AbilityEffectRunAction();
-            ContextActionSavingThrow savingThrow = new ContextActionSavingThrow();
+            AbilityEffectRunAction abilityEffectRunAction = Helpers.Create<AbilityEffectRunAction>();
+            ContextActionSavingThrow savingThrow = Helpers.Create<ContextActionSavingThrow>();
             savingThrow.Type = SavingThrowType.Fortitude;
 
-            ContextActionConditionalSaved saved = new ContextActionConditionalSaved();
-            saved.Succeed = new ActionList();
-            saved.Succeed.Actions = new GameAction[]{Helpers.Create<ContextActionApplyBuff>(ap =>
+            ContextActionConditionalSaved saved = Helpers.Create<ContextActionConditionalSaved>();
+            saved.Succeed = new ActionList
             {
-                ap.Buff = TrueJudgmentCooldownBuff;
-                ap.DurationValue = Helpers.CreateContextDuration(CooldownBuff, DurationRate.Hours);
+                Actions = new GameAction[]
+                {
+                    Helpers.Create<ContextActionApplyBuff>(ap =>
+                    {
+                        ap.Buff = TrueJudgmentCooldownBuff;
+                        ap.DurationValue = Helpers.CreateContextDuration(CooldownBuff, DurationRate.Hours);
+                    })
+                }
+            };
+            saved.Failed = new ActionList {Actions = new GameAction[] {Helpers.Create<ContextActionKillTarget>()}};
+            savingThrow.Actions = new ActionList {Actions = new GameAction[] {saved}};
 
-            })};
-            saved.Failed = new ActionList();
-            saved.Failed.Actions = new GameAction[] { new ContextActionKillTarget() };
-            savingThrow.Actions = new ActionList();
 
-            savingThrow.Actions.Actions = new GameAction[] { saved };
-
-            Conditional conditional = new Conditional();
+            Conditional conditional = Helpers.Create<Conditional>();
             conditional.ConditionsChecker = new ConditionsChecker();
 
-            ContextConditionHasBuffFromCaster condition = new ContextConditionHasBuffFromCaster();
+            ContextConditionHasBuffFromCaster condition = Helpers.Create<ContextConditionHasBuffFromCaster>();
             condition.Buff = TrueJudgmentCooldownBuff;
 
             conditional.ConditionsChecker.Conditions = new Condition[] { condition };
-            conditional.IfFalse = new ActionList();
-            conditional.IfFalse.Actions = new GameAction[] { savingThrow };
+            conditional.IfFalse = new ActionList {Actions = new GameAction[] {savingThrow}};
 
-            abilityEffectRunAction.Actions = new ActionList();
-            abilityEffectRunAction.Actions.Actions = new GameAction[]
-            {
-                conditional
-            };
+            abilityEffectRunAction.Actions = new ActionList {Actions = new GameAction[] {conditional}};
 
             BlueprintAbility TrueJudgmentAbility = library.Get<BlueprintAbility>("d69715dc0de8f8b44ac9f20188c7c22e");
 
