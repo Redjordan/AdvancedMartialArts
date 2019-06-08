@@ -12,6 +12,7 @@ using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Blueprints.Facts;
+using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.Designers.Mechanics.Buffs;
 using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
@@ -147,8 +148,12 @@ namespace AdvancedMartialArts.Feats.GeneralFeats
 
             BlueprintUnit giantSpider = Main.library.CopyAndAdd<BlueprintUnit>("c4b33e5fd3d3a6f46b2aade647b0bf25", "GiantSpiderCompanion", Helpers.getGuid("GiantSpiderCompanion"));
 
+            BlueprintItemWeapon Bite1d6 = Main.library.Get<BlueprintItemWeapon>("a000716f88c969c499a535dadcf09286");
+            BlueprintItemWeapon EmptyHandWeapon = Main.library.Get<BlueprintItemWeapon>("20375b5a0c9243d45966bd72c690ab74");
+
             giantSpider.Brain = animalCompanionUnitCentipede.Brain;
             giantSpider.ComponentsArray = animalCompanionUnitCentipede.ComponentsArray;
+            giantSpider.Body = animalCompanionUnitCentipede.Body;
             giantSpider.AddFacts = giantSpider.AddFacts.AddToArray(weaponFinesse);
             giantSpider.Faction = Main.library.Get<BlueprintFaction>("d8de50cc80eb4dc409a983991e0b77ad"); // Neutral faction
 
