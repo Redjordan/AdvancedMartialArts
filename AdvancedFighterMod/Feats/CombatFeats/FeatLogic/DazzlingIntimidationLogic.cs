@@ -83,6 +83,7 @@ namespace AdvancedMartialArts.Feats.CombatFeats.FeatLogic
             {
                 base.Owner.Stats.CheckIntimidate.RemoveModifier(_modifier);
                 base.Owner.Abilities.RemoveFact(PersuasionUseAbilityMove);
+                base.Owner.Abilities.RemoveFact(DazzlingDisplayActionMove);
                 if (_hadPersuasionUseAbility)
                 {
                     base.Owner.Abilities.AddFact(PersuasionUseAbility, Helpers.GetMechanicsContext());
